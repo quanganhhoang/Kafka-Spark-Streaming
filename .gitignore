@@ -79,4 +79,7 @@ template.yaml
 # aws-sam build folder
 .aws-sam/
 
+# kafka-installation
+kafka_2.12-2.3.0/
+
 # End of https://www.gitignore.io/api/intellij+all
