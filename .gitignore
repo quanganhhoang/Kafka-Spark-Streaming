@@ -74,5 +74,6 @@ modules.xml
 
 # app.yaml
 app.yaml
+template.yaml
 
 # End of https://www.gitignore.io/api/intellij+all
