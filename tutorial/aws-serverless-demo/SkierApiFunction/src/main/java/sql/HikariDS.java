@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 public class HikariDS {
   private static final Logger logger = LogManager.getLogger(HikariDS.class.getName());
 
-  private static final boolean IS_LOCAL = true;
+  private static final boolean IS_LOCAL = false;
 
   private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
   private static final String LOCALHOST_JDBC_URL = "jdbc:mysql://localhost:3306/skierapi?useSSL=false&serverTimezone=UTC";
