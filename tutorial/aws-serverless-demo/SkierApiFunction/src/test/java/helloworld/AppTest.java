@@ -3,6 +3,8 @@ package helloworld;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+
+import model.GatewayResponse;
 import org.junit.Test;
 
 public class AppTest {

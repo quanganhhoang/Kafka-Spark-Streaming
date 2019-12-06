@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
+import model.GatewayResponse;
 
 /**
  * Handler for requests to Lambda function.
