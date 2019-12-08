@@ -25,8 +25,9 @@ What you need to install and how to install them
       
 
 ## Deployment on AWS
-
-1. Create another EC2 instance to host zookeeper/ kafka broker
+1. Create a VPC and at least two subnets
+2. Create an RDS instance and corresponding security group settings
+3. Create an EC2 instance to host zookeeper/ kafka broker in the same VPC as above
     1. Set up security settings to allow inbound connections on port 9092 from VPC and/or your machine
     
     2. Update jdk
@@ -55,6 +56,11 @@ What you need to install and how to install them
         `advertised.listeners=PLAINTEXT://<kafka-hostname>:9092`
         
     6. Start Kafka server
+        ```
+        bin/kafka-server-start.sh -daemon config/server.properties
+        ```
+        
+    7. Create Kafka topics
         ```
         bin/kafka-topics.sh –create –bootstrap-server localhost:9092 –replication-factor 1 –partitions 1 –topic lift-usage-input
         bin/kafka-topics.sh –create –bootstrap-server localhost:9092 –replication-factor 1 –partitions 1 –topic lift-usage-output
