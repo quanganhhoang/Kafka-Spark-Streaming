@@ -1,7 +1,6 @@
 # RESTful API with AWS Lambda &amp; API Gateway
 
-A demo project which implements a RESTful API (specs [here](https://app.swaggerhub.com/apis/cloud-perf/SkiDataAPI/1.1)) with AWS Lambda &amp; API Gateway 
-Related technologies include:
+A demo project which implements a RESTful API (specs [here](https://app.swaggerhub.com/apis/cloud-perf/SkiDataAPI/1.1)) with AWS Lambda &amp; API Gateway. Related technologies include:
 
 1. **HikariCP** for connection pooling to AWS RDS
 2. **Log4j2** for logging
