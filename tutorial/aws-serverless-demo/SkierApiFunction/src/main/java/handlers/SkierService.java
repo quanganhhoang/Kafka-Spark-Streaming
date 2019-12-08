@@ -8,6 +8,8 @@ import com.google.gson.JsonObject;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import kafka.KafkaConfig;
+import kafka.StreamProducer;
 import model.GatewayRequest;
 import model.GatewayResponse;
 import java.util.HashMap;
@@ -41,6 +43,9 @@ public class SkierService implements RequestHandler<GatewayRequest, GatewayRespo
     int time = body.getTime();
     int liftId = body.getLiftId();
     int vertical = liftId * 10;
+
+    // send liftId to Kafka topic for analysis
+    StreamProducer.sendKafkaMessage(KafkaConfig.INPUT_TOPIC, Integer.toString(liftId));
 
     boolean res;
     try {
