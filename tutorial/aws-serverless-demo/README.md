@@ -65,15 +65,19 @@ What you need to install and how to install them
 
 ## Run
 
-1. Deploy AWS Lambda Functions onto a CloudFormation stack
-2. Send GET/POST requests to API Gateway
-3. Check if database gets updated correspondingly
-4. Read messages from lift-usage-output topic on kafka broker hosted on EC2
-    ```
-    bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic lift-usage-output \
-    --from-beginning --formatter kafka.tools.DefaultMessageFormatter --property print.key=true --property print.value=true \
-    --property key.deserializer=org.apache.kafka.common.serialization.StringDeserializer --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
-    ```
+1. Make sure you are using the correct AWS Credentials in the right region
+2. Deploy AWS Lambda Functions onto a CloudFormation stack
+3. Send GET/POST requests to API Gateway
+4. Check if database gets updated correspondingly
+5. Read messages from lift-usage-output topic on kafka broker hosted on EC2
+    
+    * Read from command line:
+      ```
+      bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic lift-usage-output \
+      --from-beginning --formatter kafka.tools.DefaultMessageFormatter --property print.key=true --property print.value=true \
+      --property key.deserializer=org.apache.kafka.common.serialization.StringDeserializer --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
+      ```
+    * Read from Kafka Consumer written in Java: `Run kafka.StreamConsumer.java`
 
 ## Built With
 

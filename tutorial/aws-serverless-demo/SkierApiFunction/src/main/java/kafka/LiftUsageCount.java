@@ -1,4 +1,4 @@
-package kafka.demo;
+package kafka;
 
 import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
