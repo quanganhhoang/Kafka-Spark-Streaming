@@ -77,6 +77,7 @@ What you need to install and how to install them
       --from-beginning --formatter kafka.tools.DefaultMessageFormatter --property print.key=true --property print.value=true \
       --property key.deserializer=org.apache.kafka.common.serialization.StringDeserializer --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
       ```
+      
     * Read from Kafka Consumer written in Java: `Run kafka.StreamConsumer.java`
 
 ## Built With
