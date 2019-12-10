@@ -1,6 +1,7 @@
 # RESTful API with AWS Lambda &amp; API Gateway
 
-A demo project which implements a RESTful API (specs [here](https://app.swaggerhub.com/apis/cloud-perf/SkiDataAPI/1.1)) with AWS Lambda &amp; API Gateway. Related technologies include:
+A demo project which implements a RESTful API (specs [here](https://app.swaggerhub.com/apis/cloud-perf/SkiDataAPI/1.1)) with AWS Lambda &amp; API Gateway 
+Related technologies include:
 
 1. **HikariCP** for connection pooling to AWS RDS
 2. **Log4j2** for logging
@@ -24,9 +25,8 @@ What you need to install and how to install them
       
 
 ## Deployment on AWS
-1. Create a VPC and at least two subnets
-2. Create an RDS instance and corresponding security group settings
-3. Create an EC2 instance to host zookeeper/ kafka broker in the same VPC as above
+
+1. Create another EC2 instance to host zookeeper/ kafka broker
     1. Set up security settings to allow inbound connections on port 9092 from VPC and/or your machine
     
     2. Update jdk
@@ -56,11 +56,6 @@ What you need to install and how to install them
         
     6. Start Kafka server
         ```
-        bin/kafka-server-start.sh -daemon config/server.properties
-        ```
-        
-    7. Create Kafka topics
-        ```
         bin/kafka-topics.sh –create –bootstrap-server localhost:9092 –replication-factor 1 –partitions 1 –topic lift-usage-input
         bin/kafka-topics.sh –create –bootstrap-server localhost:9092 –replication-factor 1 –partitions 1 –topic lift-usage-output
         ```
@@ -70,15 +65,20 @@ What you need to install and how to install them
 
 ## Run
 
-1. Deploy AWS Lambda Functions onto a CloudFormation stack
-2. Send GET/POST requests to API Gateway
-3. Check if database gets updated correspondingly
-4. Read messages from lift-usage-output topic on kafka broker hosted on EC2
-    ```
-    bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic lift-usage-output \
-    --from-beginning --formatter kafka.tools.DefaultMessageFormatter --property print.key=true --property print.value=true \
-    --property key.deserializer=org.apache.kafka.common.serialization.StringDeserializer --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
-    ```
+1. Make sure you are using the correct AWS Credentials in the right region
+2. Deploy AWS Lambda Functions onto a CloudFormation stack
+3. Send GET/POST requests to API Gateway
+4. Check if database gets updated correspondingly
+5. Read messages from lift-usage-output topic on kafka broker hosted on EC2
+    
+    * Read from command line:
+      ```
+      bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic lift-usage-output \
+      --from-beginning --formatter kafka.tools.DefaultMessageFormatter --property print.key=true --property print.value=true \
+      --property key.deserializer=org.apache.kafka.common.serialization.StringDeserializer --property value.deserializer=org.apache.kafka.common.serialization.LongDeserializer
+      ```
+      
+    * Read from Kafka Consumer written in Java: `Run kafka.StreamConsumer.java`
 
 ## Built With
 
